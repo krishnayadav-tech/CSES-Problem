@@ -18,6 +18,7 @@
 using namespace std;
 #define mod 1000000007
 typedef long long int ll;
+int arr[32][200000];
 int main(int size,char** args)
 {
     // basic input output preset
@@ -33,36 +34,31 @@ int main(int size,char** args)
     std::cin.tie(NULL);
     int n,q;
     cin >> n >> q;
-    int arr[n];
     for(int i=0;i<n;i++){
-        cin >> arr[i];
+        int temp;
+        cin >> temp;
+        temp--;
+        arr[0][i] = temp;
+    }
+
+    
+    for(int i=1;i<=31;i++){
+        for(int j=0;j<n;j++){
+            arr[i][j] = arr[i-1][arr[i-1][j]];
+        }
     }
 
     while(q--){
         int a,b;
-        cin >> a  >> b;
-        int k = b;
-        int i =0;
-        map<int,int> abc;
-        abc.insert({a,0});
-        int cylce = 0;
-        while(b--){
-            a = arr[a-1];
-            i++;
-            if(abc.find(a) == abc.end())
-                abc.insert({a,i});
-            else{
-                k = k - abc[a];
-                cylce = i - abc[a];
-                int howmuch = k % cylce;
-                while(howmuch--){
-                    
-                    a = arr[a-1];
-                }
-                break;
-            }
+        cin >> a >> b;
+        a = a - 1;
+        int x = 1 << 30;
+        while(x = (x >> 1)){
+            int temp = x & b;
+            if(temp != 0)
+                a = arr[(int)log2(temp)][a];
         }
-        cout << a << '\n';
+        cout << a + 1 << '\n';
     }
     return 0;
 }

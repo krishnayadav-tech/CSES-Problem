@@ -24,18 +24,10 @@ int main()
 //     freopen("output.txt","w",stdout);
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(NULL);
-    list<int> a;
-    a.push_back(10);
-    queue<list<int>> abc;
-    abc.push(a);
-    a.push_back(15);
-    abc.push(a);
-    while(abc.size() > 0){
-        for(int x : abc.front()){
-            cout << x << ' ';
-        }
-        cout << '\n';
-        abc.pop();
+    int a = 1 << 30;
+    cout << a << '\n';
+    while(a = a >> 1){
+        cout << a << '\n';
     }
     return 0;
 }
