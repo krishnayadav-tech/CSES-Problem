@@ -24,10 +24,5 @@ int main()
 //     freopen("output.txt","w",stdout);
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(NULL);
-    int a = 1 << 30;
-    cout << a << '\n';
-    while(a = a >> 1){
-        cout << a << '\n';
-    }
     return 0;
 }
