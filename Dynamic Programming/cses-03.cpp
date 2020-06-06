@@ -23,17 +23,19 @@ int ans[1000001];
 int min_c(int x,int n,int arr[]){
     //base case
     if(x == 0){
-        return 0;
+        return 1;
     }
-    if(ans[x] != 0) 
+    if(ans[x] != -1) 
         return ans[x];
-    int mine = 1000000000;
+    ll ans2 = 0;
     for(int i=0;i<n;i++){
-        if(x-arr[i] >= 0)
-            mine = min(min_c(x-arr[i],n,arr)+1,mine);
+        if(x-arr[i] >= 0){
+            ans2 = ans2 + min_c(x-arr[i],n,arr);
+            ans2 = ans2 % mod;
+        }
     }
-    ans[x] = mine;
-    return mine;
+    ans[x] = ans2;
+    return ans2;
     //some optimization 
 }
 int main(int size,char** args)
@@ -49,11 +51,12 @@ int main(int size,char** args)
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(NULL);
     int n,x;
+    fill(ans,ans+1000001,-1);
     cin >> n >> x;
     int arr[n];
     for(int i=0;i<n;i++){
         cin >> arr[i];
     }
-    cout << (min_c(x,n,arr)==1000000000?-1:min_c(x,n,arr))  << '\n';
+    cout << min_c(x,n,arr) << '\n';
     return 0;
 }

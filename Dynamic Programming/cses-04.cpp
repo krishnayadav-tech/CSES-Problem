@@ -19,23 +19,7 @@
 using namespace std;
 #define mod 1000000007
 typedef long long int ll;
-int ans[1000001];
-int min_c(int x,int n,int arr[]){
-    //base case
-    if(x == 0){
-        return 0;
-    }
-    if(ans[x] != 0) 
-        return ans[x];
-    int mine = 1000000000;
-    for(int i=0;i<n;i++){
-        if(x-arr[i] >= 0)
-            mine = min(min_c(x-arr[i],n,arr)+1,mine);
-    }
-    ans[x] = mine;
-    return mine;
-    //some optimization 
-}
+int ans[101][1000001];
 int main(int size,char** args)
 {
     // basic input output preset
@@ -50,10 +34,34 @@ int main(int size,char** args)
     std::cin.tie(NULL);
     int n,x;
     cin >> n >> x;
+    
     int arr[n];
     for(int i=0;i<n;i++){
         cin >> arr[i];
     }
-    cout << (min_c(x,n,arr)==1000000000?-1:min_c(x,n,arr))  << '\n';
+    int maxi = x;
+    sort(arr,arr+n);
+
+    for(int j=0;j<=n;j++){
+        for(int i=0;i<=maxi;i++){
+            ans[j][i] = 0;
+        }
+    }
+
+    for(int i=1;i<=n;i++){
+        ans[i][0] = 1;
+    }
+
+    for(int i=1;i<=n;i++){
+        for(int j=1;j<=maxi;j++){
+            if(j-arr[i-1] >= 0)
+                ans[i][j] = ans[i-1][j] + ans[i][j-arr[i-1]];
+            else
+                ans[i][j] = ans[i-1][j];
+            ans[i][j]  = ans[i][j] % mod;
+        }
+    }
+    
+    cout << ans[n][maxi] << '\n';
     return 0;
 }
