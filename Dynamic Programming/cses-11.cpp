@@ -19,27 +19,7 @@
 using namespace std;
 #define mod 1000000007
 typedef long long int ll;
-bool done[501][501];
-int ans2[501][501];
-int cut(int a,int b){
-    if(a==b)
-        return 0;
-    if(done[a][b] == true)
-        return ans2[a][b];
-
-    int mine = min(a,b);
-    ll ans = INT_MAX;
-    for(int i=1;i<a;i++){
-        ans = min(ans,1+ cut(i,b) + cut(a-i,b));
-    }
-    for(int i=1;i<b;i++){
-        ans = min(ans,1+ cut(a,i) + cut(a,b-i));
-    }
-    
-    done[a][b] = true;
-    ans2[a][b] = ans;
-    return ans;
-}
+bool ans[101][100001];
 int main(int size,char** args)
 {
     // basic input output preset
@@ -52,8 +32,38 @@ int main(int size,char** args)
     }
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(NULL);
-    int a,b;
-    cin >> a >> b;
-    cout << cut(a,b) << '\n';
+    int n;
+    cin >> n;
+    int arr[n+1];
+    int x = 0;
+    for(int i=1;i<=n;i++){
+        cin >> arr[i];
+        x = x + arr[i];
+    }
+    sort(arr+1,arr+n+1);
+    for(int i=0;i<=n;i++){
+        ans[i][0] = true;
+    }
+
+    
+    for(int i=1;i<=n;i++){
+       for(int j=1;j<=x;j++){
+           if(j-arr[i]>=0 && ans[i-1][j-arr[i]]){
+               ans[i][j] = true;
+           }else{
+               ans[i][j] = ans[i-1][j];
+           }
+       } 
+    }
+    vector<int> ans2;
+    for(int i=1;i<=x;i++){
+        if(ans[n][i] == true){
+            ans2.push_back(i);
+        }
+    }
+    cout << ans2.size() << '\n';
+    for(int x : ans2)
+        cout << x << ' ';
+    cout << '\n';
     return 0;
 }
