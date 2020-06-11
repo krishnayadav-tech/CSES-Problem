@@ -18,10 +18,22 @@
 #define min(a,b) (a<b?a:b)
 using namespace std;
 #define mod 1000000007
-#define INF 1e9
 typedef long long int ll;
-typedef pair<int,int> pi;
+int n;
+int ans;
+void combi(int i,int sum,int sum2){
+    
+    if(i == n+1 && sum == sum2){
+        ans++;
+        return;
+    }
 
+    if(i == n+1)
+        return;
+    
+    combi(i+1,sum+i,sum2);
+    combi(i+1,sum,sum2+i);
+}
 int main(int size,char** args)
 {
     // basic input output preset
@@ -34,6 +46,15 @@ int main(int size,char** args)
     }
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(NULL);
-    
+    cin >> n;
+    ll x = (n * (n+1))/2;
+    if(x % 2 != 0){
+        cout << 0 << endl;
+        return 0;
+    }
+
+    //
+    combi(1,0,0);
+    cout << (ans/2) << '\n';
     return 0;
 }
