@@ -17,23 +17,22 @@
 #define max(a,b) (a>b?a:b)
 #define min(a,b) (a<b?a:b)
 using namespace std;
-#define mod 1000000007
 typedef long long int ll;
-int n;
-int ans;
-void combi(int i,int sum,int sum2){
-    
-    if(i == n+1 && sum == sum2){
-        ans++;
-        return;
-    }
+const ll MOD = 1000000007;
+int n, t;
+int c[501][250001];
+int f(int i, int s)  {
+  if (i == n) return s == t;
+  if (c[i][s] != -1) return c[i][s];
+  ll k = f(i + 1, s);
+  if (s + i <= t) k += f(i + 1, s + i);
+  k = k % MOD;
+  c[i][s] = k;
 
-    if(i == n+1)
-        return;
-    
-    combi(i+1,sum+i,sum2);
-    combi(i+1,sum,sum2+i);
+  return k;
 }
+ 
+
 int main(int size,char** args)
 {
     // basic input output preset
@@ -52,9 +51,11 @@ int main(int size,char** args)
         cout << 0 << endl;
         return 0;
     }
-
-    //
-    combi(1,0,0);
-    cout << (ans/2) << '\n';
+    t = x/2;
+    for (int i = 0; i <= 500; i++)
+      for (int j = 0; j <= 250000; j++)
+        c[i][j] = -1;
+    
+    cout << (f(1,0)) << endl;
     return 0;
 }

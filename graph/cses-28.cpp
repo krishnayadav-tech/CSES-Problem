@@ -21,12 +21,12 @@ using namespace std;
 typedef long long int ll;
 int n;
 int degree[100000] = {0};
+
 void firstpar(int par,vector<pair<int,bool>> edge[],int node){
-    for(int i=0;i<edge[node].size();i++){
-        if(edge[node][i].first == par && edge[node][i].second == true){
-            edge[node][i].second = false;
-            return;
-        }
+    pair<int,bool> temp = {par,true};
+    if(binary_search(edge[node].begin(),edge[node].end(),temp)){
+        int x = lower_bound(edge[node].begin(),edge[node].end(),temp) - edge[node].begin();
+        edge[node][x].second = false;
     }
 }   
 void dfs(int node,int par,vector<pair<int,bool>> edge[],stack<int>& abc){
@@ -75,6 +75,10 @@ int main(int size,char** args)
         degree[a]++;
         degree[b]++;
     }
+
+    for(int i=0;i<n;i++)
+        sort(edge[i].begin(),edge[i].end());
+
     bool alleven = true;
     
     for(int i=0;i<n;i++){
