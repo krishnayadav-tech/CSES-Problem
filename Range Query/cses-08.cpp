@@ -35,5 +35,29 @@ int main(int size,char** args)
     }
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(NULL);   
+    int n,m;
+    cin >> n >> m;
+    set<pi> ans;
+    for(int i=1;i<=n;i++){
+        int temp;
+        cin >> temp;
+        ans.insert({temp,i});
+    }
+    while(m--){
+        int x;
+        cin >> x;
+        set<pi> :: iterator it = ans.lower_bound({x,0});
+        if(it == ans.end()){
+            cout << 0 << ' ';
+            continue;
+        }
+        int z = it->first;
+        int index = it->second;
+        cout << index << ' ';
+        z = z-x;
+        ans.erase(it);
+        ans.insert({z,index});
+    }
+    // cout << '\n';
     return 0;
 }
