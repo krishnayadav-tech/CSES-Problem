@@ -83,8 +83,8 @@ pair<int,int> rangequery(int i,int ss,int se,int rs,int re,vector<pair<int,int>>
     }else{
         return second;
     }
-}
 
+}
 int main(int size,char** args)
 {
     info.resize(1);
@@ -102,21 +102,21 @@ int main(int size,char** args)
     cin >> n >> q;
     vector<int> edge[n];
     for(int i=1;i<n;i++){
-        int temp;
-        cin >> temp;
-        temp--;
-        edge[i].push_back(temp);
-        edge[temp].push_back(i);
+        int a,b;
+        cin >> a >> b;
+        a--;b--;
+        edge[a].push_back(b);
+        edge[b].push_back(a);
     }
     bool visited[n] = {false};
     dfs(0,0,edge,visited);
-
     int lastindex[n];
     fill(lastindex,lastindex+n,-1);
     for(int i=1;i<info.size();i++){
         if(lastindex[info[i].first] == -1){
             lastindex[info[i].first] = i;
         }
+        // cout << info[i].first << ' ' << info[i].second << '\n';
     }
     int n2 = info.size() - 1;
     vector<pair<int,int>> tree(4*n2,{-1,INF});
@@ -127,7 +127,8 @@ int main(int size,char** args)
         a--;b--;
         int start = min(lastindex[b],lastindex[a]);
         int end = max(lastindex[b],lastindex[a]);
-        cout << rangequery(1,1,n2,start,end,tree).first + 1 << '\n';
+        int x = rangequery(1,1,n2,start,end,tree).second;
+        cout << info[start].second + info[end].second - (2*x) << '\n';
     }
     return 0;
 }
