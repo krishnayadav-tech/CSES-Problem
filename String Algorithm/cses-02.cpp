@@ -51,6 +51,8 @@ int main(int size,char** args)
             j++;
             lps[i] = j;
         }else{
+            if(j != -1)
+                i--;
             j = -1;
         }
     }
