@@ -22,36 +22,36 @@ using namespace std;
 #define INF 1e9
 typedef long long int ll;
 typedef pair<int,int> pi;
-bool issame(string& a,string& b,int as,int ae,int bs,int be){
-    if(b.size() - bs < a.size()){
-        return false;
-    }
-
-    for(int i=0;i<=ae;i++){
-        if(a[i] != b[i+bs])
-            return false;
-    }
-    return true;
-}
-bool done[5000];
-ll dp[5000];
-int solve(int index,string& abc,vector<string>& arr){
-    if(index == abc.size())
-        return 1;
-    if(done[index] == true)
-        return dp[index];
-    int res = 0;
-    for(int i=0;i<arr.size();i++)
+struct Trie{
+    bool end = false;
+    unordered_map<char,Trie*> abc;
+};
+ 
+    
+bool search(Trie* root,string key)
+{
+    Trie* curr = root;
+    for(int i=0;i<key.size();i++)
     {
-        if(issame(arr[i],abc,0,arr[i].size() - 1,index,index+arr[i].size()-1)){
-            res = res +  (solve(index+arr[i].size(),abc,arr) % mod);
-            res = res % mod;
-        }
+        if(curr->abc.find(key[i]) == curr->abc.end())
+            return false;
+        curr = curr->abc[key[i]];
     }
-    done[index] = true;
-    dp[index] = res;
-    return res;
+    return curr->end;
 }
+ 
+void insert(Trie* root,string key){
+    Trie* curr = root;
+    for(int i=0;i<key.size();i++)
+    {
+        if(curr->abc.find(key[i]) == curr->abc.end())
+            curr->abc.insert({key[i],new Trie()});
+        curr  = curr->abc[key[i]];
+    }
+    curr->end = true;
+}
+ 
+ 
 int main(int size,char** args)
 {
     // basic input output preset
@@ -64,14 +64,58 @@ int main(int size,char** args)
     }
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(NULL);   
-    string abc;
-    cin >> abc;
+    vector<int> edge[5001];
+    int indegree[5001] = {0};
+    Trie* root = new Trie();
+    string word;
+    cin >> word;
     int n;
     cin >> n;
-    vector<string> arr(n);
-    for(int i=0;i<n;i++)
-        cin >> arr[i];
-
-    cout << solve(0,abc,arr) << '\n';
-    return 0;
+    
+    for(int i=0;i<n;i++){
+        string temp;
+        cin >> temp;
+        insert(root,temp);  
+    }
+    Trie* curr = root;
+    for(int i=0;i<word.size();i++){
+        curr = root;
+        for(int j=i;j<=word.size();j++){
+            
+            if(curr != root && curr->end == true){
+                edge[i].push_back(j);
+                indegree[j]++;
+            }
+            if(j==word.size())
+                break;
+            if(curr->abc.find(word[j]) == curr->abc.end())
+                break;
+            curr = curr->abc[word[j]];
+        }
+        
+    }
+ 
+    
+    ll ans[5001] = {0};
+    queue<int> abc;
+    ans[0] = 1;
+    for(int i=0;i<word.size();i++){
+        if(indegree[i] == 0){
+            abc.push(i);
+        }
+    }
+    while(abc.size() > 0){
+        int x  = abc.front();
+        for(int y : edge[x]){
+            indegree[y]--;
+            ans[y] = ans[y] + ans[x];
+            ans[y] = ans[y] % mod;
+            if(indegree[y] == 0){
+                abc.push(y);
+            }
+        }       
+        abc.pop();
+    }
+    cout << ans[word.size()] << '\n';
+    return 0;   
 }
