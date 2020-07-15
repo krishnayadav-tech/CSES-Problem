@@ -24,7 +24,24 @@ typedef long long int ll;
 typedef pair<int,int> pi;
 typedef vector<int> vi;
 typedef vector<long long int> vl;
-
+set<int> contain;
+int i = 0;
+void dfs(int s,vi& visited,vi edge[])
+{
+    visited[s] = 1;
+    for(int x : edge[s]){
+        if(visited[x] == false)
+        {
+            dfs(x,visited,edge);
+            if(contain.find(x) == contain.end() && contain.find(s) == contain.end())
+            {
+                contain.insert(x);
+                contain.insert(s);
+                i++;
+            }
+        }
+    }
+}
 int main(int size,char** args)
 {
     // basic input output preset
@@ -37,5 +54,18 @@ int main(int size,char** args)
     }
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(NULL);   
+    int n;
+    cin >> n;
+    vi edge[n];
+    for(int i=1;i<n;i++){
+        int a,b;
+        cin >> a >> b;
+        a--;b--;
+        edge[a].push_back(b);
+        edge[b].push_back(a);
+    }
+    vi visited(n,0);
+    dfs(0,visited,edge);
+    cout << i << endl;
     return 0;
 }
