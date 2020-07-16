@@ -1,8 +1,8 @@
-//TLE
 #include <iostream>
 #include <climits>
 #include <cmath>
 #include <string>
+#include <chrono>
 #include <vector>
 #include <list>
 #include <utility>
@@ -23,63 +23,75 @@ using namespace std;
 #define INF 1e9
 typedef long long int ll;
 typedef pair<int,int> pi;
-set<int> tree[4*200000];
-bool isoverlap(int a,int b,int x,int y){
-    if(x >= a and x <= b){
-        return true;
-    }
-    if(a >= x and a <= y ){
-        return true;
-    }
-    return false;
+typedef vector<int> vi;
+struct query{
+	int l=0;
+	int r=0;
+	int i=-1;
+};
+bool operator<(query a,query b){
+    return a.r < b.r;
 }
  
-void construct(int i,int ss,int se,int arr[],set<int> tree[]){
-    if(ss == se){
-        tree[i].insert(arr[ss]);
-        return;
-    }
-    int mid = ss + (se - ss)/2;
-    construct(i*2,ss,mid,arr,tree);
-    construct(i*2+1,mid+1,se,arr,tree);
-    for(int x : tree[i*2]){
-        tree[i].insert(x);
-    }
-    for(int x : tree[i*2+1]){
-        tree[i].insert(x);
-    }
-}
- 
-set<int> rangequery(int i,int ss,int se,int rs,int re,set<int> tree[]){
-	if(re < ss or rs > se){
-		set<int> ans;
-		return ans;
-	}
-    if(ss >= rs && se <= re){
+int buildtree(int i,int ses,int see,vector<int>& data,vector<int>& tree)
+{
+    if(ses == see){
+        tree[i] = data[ses];
         return tree[i];
     }
-    int mid = ss + (se - ss)/2;
-    set<int> ans1,ans2;
-    set<int> some;
-    if(isoverlap(ss,mid,rs,re)){
-        ans1 = rangequery(i*2,ss,mid,rs,re,tree);
-    }
- 
-    if(isoverlap(mid+1,se,rs,re)){
-        ans2 = rangequery(i*2+1,mid+1,se,rs,re,tree);
-    }
- 
-    for(int x : ans1){
-        some.insert(x);
-    }
- 
-    for(int x : ans2){
-        some.insert(x);
-    }
-    return some;
+    int mid = ses + (see - ses)/2;
+    int value1,value2;
+    value1 = buildtree(i*2,ses,mid,data,tree);
+    value2 = buildtree(i*2+1,mid+1,see,data,tree);
+    tree[i] = value1 + value2;
+    return tree[i];
 }
+ 
+int updatetree(int i,int ses,int see,int in,int value,vector<int>& tree)
+{
+    if(ses==see and ses==in){
+        tree[i] = value;
+        return tree[i];
+    }
+    if((in < ses or in > see)){
+        return tree[i];
+    }
+    if(ses == see)
+        tree[i];
+    
+    int mid = ses + (see-ses)/2;
+    int value1 = updatetree(i*2,ses,mid,in,value,tree);
+    int value2 = updatetree((i*2)+1,mid+1,see,in,value,tree);
+    tree[i] = value1 + value2;
+    return tree[i];
+}
+ 
+ 
+int rangequery(int i,int ses,int see,int ras,int rae,vector<int>& tree)
+{
+    if(ses >= ras and see <= rae){
+        return tree[i];
+    }
+    int mid = ses + (see - ses)/2;
+    int value1 ,value2;
+    value1 = 0;
+    value2 = 0;
+    if((ras >= ses and ras <= mid) or (ses >= ras and ses <= rae))
+    {
+        value1 = rangequery(i*2,ses,mid,ras,rae,tree);
+    }
+ 
+    if((ras >= mid+1 and ras <= see) or (mid+1 >= ras and mid+1 <= rae))
+    {
+        value2 = rangequery(i*2+1,mid+1,see,ras,rae,tree);
+    }
+    return value2 + value1;
+ 
+}
+ 
 int main(int size,char** args)
 {
+    auto s = chrono::high_resolution_clock::now();
     // basic input output preset
     if(size >= 2){
         string args2 = args[1];
@@ -88,21 +100,66 @@ int main(int size,char** args)
             // freopen("output.txt","w",stdout);
         }
     }
+ 
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(NULL);   
     int n,q;
-    cin >> n >> q;
-    int arr[n+1];
-    for(int i=1;i<=n;i++){
-        cin >> arr[i];
+    scanf("%d",&n);
+    scanf("%d",&q);
+    int value[n];
+    map<int,int> pos;
+    for(int i=0;i<n;i++){
+        scanf("%d",&value[i]);
+        if(pos.find(value[i]) == pos.end()){
+            pos.insert({value[i],i});
+        }
+    }
+    query arr[q];
+    for(int i=0;i<q;i++){
+        int a,b;
+        scanf("%d %d",&a,&b);
+        a--;
+        b--;
+        arr[i].i = i;
+        arr[i].l = a;
+        arr[i].r = b;
+    }
+    sort(arr,arr+q);
+    int ans[q];
+    vi tree(4*n);
+    fill(tree.begin(),tree.end(),0);
+    int start = 0;
+    for(int i=0;i<q;i++){
+        int l = arr[i].l;
+        int r = arr[i].r;
+        int id = arr[i].i;
+        if(id == -1)
+            continue;
+        if(r < start){
+            ans[id] = rangequery(1,1,n,l+1,r+1,tree);
+        }else{
+            for(int j=start;j<=r;j++){
+                int id2 = pos[value[j]];
+                if(id2 == j){
+                    updatetree(1,1,n,j+1,1,tree);
+                }else{
+                    updatetree(1,1,n,id2+1,0,tree);
+                    updatetree(1,1,n,j+1,1,tree);
+                    pos[value[j]] = j;
+                }
+            }
+            ans[id] = rangequery(1,1,n,l+1,r+1,tree);
+            start = r + 1;
+        }
+    }   
+   
+ 
+    for(int i=0;i<q;i++){
+        printf("%d ",ans[i]);
     }
     
-    construct(1,1,n,arr,tree);
- 
-    while(q--){
-        int a,b;
-        cin >> a >> b;
-        cout << rangequery(1,1,n,a,b,tree).size() << '\n';
-    }
+    auto e = chrono::high_resolution_clock::now();
+    chrono::duration<double> diff = e - s;
+    // printf("%f",diff.count());
     return 0;
 }
