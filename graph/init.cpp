@@ -2,6 +2,7 @@
 #include <climits>
 #include <cmath>
 #include <string>
+#include <chrono>
 #include <vector>
 #include <list>
 #include <utility>
@@ -14,22 +15,27 @@
 #include <unordered_map>
 #include <sstream>
 #include <unistd.h>
+using namespace std;
 #define max(a,b) (a>b?a:b)
 #define min(a,b) (a<b?a:b)
-using namespace std;
+#define isint(a) ((int)a==a)
 #define mod 1000000007
+#define INF 1e9
 typedef long long int ll;
-int main(int size,char** args)
+typedef pair<int,int> pi;
+typedef vector<int> vi;
+
+ 
+int main()
 {
-    // basic input output preset
-    if(size >= 2){
-        string args2 = args[1];
-        if(args2 == "-onlinejudge"){
-            freopen("input.txt","r",stdin);
-            // freopen("output.txt","w",stdout);
-        }
-    }
+    //Start clock
+    chrono::high_resolution_clock::time_point start_time;
     std::ios_base::sync_with_stdio(false);
-    std::cin.tie(NULL);
+    std::cin.tie(NULL);   
+    
+
+    //End clock
+    chrono::high_resolution_clock::time_point end_time = chrono::high_resolution_clock::now();
+    chrono::duration<double> exec_time = end_time - start_time;
     return 0;
 }

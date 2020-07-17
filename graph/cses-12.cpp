@@ -19,53 +19,55 @@ using namespace std;
 #define mod 1000000007
 typedef long long int ll;
 typedef pair<ll,int> pi;
-stack<int> ans2;
-ll sumall[2500];
-bool dfs(int s,vector<pair<int,ll>> edge[],bool visited[],bool rec[],ll sum,int start){
-    rec[s] = true;
-    visited[s] = true;
-    ans2.push(s);
-    for(auto x : edge[s]){
-        if(!visited[x.first]){
-            sumall[x.first] = sum + x.second;
-            if(dfs(x.first,edge,visited,rec,sum+x.second,start)){
-                return true;
-            }
-            sumall[x.first] = sum - x.second;
-        }else{
-            if(rec[x.first] == true && (sum + x.second - sumall[x.first]) < 0){
-                
-                ans2.push(x.first);
-                return true;
+
+struct Edge {
+    int a, b;
+    ll cost;
+    Edge(int a,int b,ll cost){
+        this->a = a;
+        this->b = b;
+        this->cost = cost;
+    }
+};
+
+int n, m;
+vector<Edge> edges;
+const int INF = 1000000000;
+
+void solve()
+{
+    vector<ll> d(n);
+    vector<ll> p(n, -1);
+    ll x;
+    for (int i = 0; i < n; ++i) {
+        x = -1;
+        for (Edge e : edges) {
+            if (d[e.a] + e.cost < d[e.b]) {
+                d[e.b] = d[e.a] + e.cost;
+                p[e.b] = e.a;
+                x = e.b;
             }
         }
     }
 
-    
-    rec[s] = false;
-    ans2.pop();
-    return false;
-}
+    if (x == -1) {
+        cout << "NO" << '\n';
+    } else {
+        for (int i = 0; i < n; ++i)
+            x = p[x];
 
-void print(){
-    vector<int> done;
-    done.push_back(ans2.top());
-    ans2.pop();
-    while(ans2.size() > 0){
-        done.push_back(ans2.top());
-        if(ans2.top() == done[0]){
-            break;
+        vector<ll> cycle;
+        for (int v = x;; v = p[v]) {
+            cycle.push_back(v);
+            if (v == x && cycle.size() > 1)
+                break;
         }
-        ans2.pop();
-    }
+        reverse(cycle.begin(), cycle.end());
 
-    for(int i=done.size()-1;i>=0;i--){
-        cout << done[i] + 1<< ' ';
-    }
-    cout << '\n';
-
-    while(ans2.size()){
-        ans2.pop();
+        cout << "YES \n";
+        for (int v : cycle)
+            cout << v+1 << ' ';
+        cout << endl;
     }
 }
 int main()
@@ -74,34 +76,15 @@ int main()
     //  freopen("output.txt","w",stdout);
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(NULL);
-    int n,e;
-    cin >> n >> e;
-    vector<pair<int,int>> al;
-    vector<ll> cost;
-    vector<pair<int,ll>> edge[n];
-    for(int i=0;i<e;i++){
+    cin >> n >> m;
+    for(int i=0;i<m;i++){
         int a,b,c;
         cin >> a >> b >> c;
         a--;
         b--;
-        edge[a].push_back({b,c});
-        al.push_back({a,b});
-        cost.push_back(c);
+        edges.push_back({a,b,c});
     }
     // belmanford
-    bool visited[n] = {false};
-    bool rec[n] = {false};
-
-    for(int i=0;i<n;i++){
-        fill(visited,visited+n,false);
-        fill(rec,rec+n,false);
-        fill(sumall,sumall + n, 0);
-        if(dfs(i,edge,visited,rec,0,i)){
-            cout << "YES" << '\n';
-            print();
-            return 0;
-        }
-    }
-    cout << "NO" << '\n';
+    solve();
     return 0;
 }
