@@ -14,44 +14,72 @@
 #include <unordered_map>
 #include <sstream>
 #include <unistd.h>
+#include <chrono>
 #define max(a,b) (a>b?a:b)
 #define min(a,b) (a<b?a:b)
 using namespace std;
 #define mod 1000000007
 typedef long long int ll;
+struct Edges{
+    vector<int> abc;
+    vector<bool> block;
+    int start = 0;
+    void add(int a){
+        abc.push_back(a);
+        block.push_back(false);
+    }
+};
+class Timer{
+public:
+    Timer(){
+        start_t = chrono::high_resolution_clock::now();
+    }
+
+    ~Timer(){
+        end_t = chrono::high_resolution_clock::now();
+    }
+
+    void exec_time()
+    {
+        end_t = chrono::high_resolution_clock::now();
+        chrono::duration<double> diff = end_t - start_t;
+        cout << fixed <<  diff.count() << endl;
+    }
+
+private:
+    chrono::high_resolution_clock::time_point start_t;
+    chrono::high_resolution_clock::time_point end_t;
+    
+};
 int n;
 int degree[100000] = {0};
-
-void firstpar(int par,vector<pair<int,bool>> edge[],int node){
-    pair<int,bool> temp = {par,true};
-    if(binary_search(edge[node].begin(),edge[node].end(),temp)){
-        int x = lower_bound(edge[node].begin(),edge[node].end(),temp) - edge[node].begin();
-        edge[node][x].second = false;
-    }
-}   
-void dfs(int node,int par,vector<pair<int,bool>> edge[],stack<int>& abc){
-    vector<pair<int,bool>> :: iterator it;
-    firstpar(par,edge,node);
-    for(it = edge[node].begin();it!=edge[node].end();it++){
-        bool d = (*it).second;
-        (*it).second = false;
-        if(d == true){
-            dfs((*it).first,node,edge,abc);
+map<pair<int,int>,int> pos;
+void dfs(int node,int par,vector<Edges>& edge,stack<int>& abc){
+    int start = edge[node].start;
+    while(start < edge[node].abc.size()){
+        edge[node].start++;
+        int mine = min(node,edge[node].abc[start]);
+        int maxe = max(node,edge[node].abc[start]);
+        if(pos[{mine,maxe}] > 0){
+            pos[{mine,maxe}]--;
+            dfs(edge[node].abc[start],node,edge,abc);
         }
+        start = edge[node].start;
     }
     abc.push(node);
 }
 
-void dfs2(int node,vector<pair<int,bool>> edge[],bool visited[]){
+void dfs2(int node,vector<Edges>& edge,bool visited[]){
     visited[node] = true;
-    for(auto x : edge[node]){
-        if(visited[x.first] == false){
-            dfs2(x.first,edge,visited);
+    for(int x : edge[node].abc){
+        if(visited[x] == false){
+            dfs2(x,edge,visited);
         }
     }
 }
 int main(int size,char** args)
 {
+    // Timer t;
     // basic input output preset
     if(size >= 2){
         string args2 = args[1];
@@ -64,30 +92,26 @@ int main(int size,char** args)
     std::cin.tie(NULL);
     int e;
     cin >> n >> e;
-    vector<pair<int,bool>> edge[n];
+    vector<Edges> edge(n);
     int degree[n] = {0};
     for(int i=0;i<e;i++){
         int a,b;
         cin >> a >> b;
         a--;b--;
-        edge[a].push_back({b,true});
-        edge[b].push_back({a,true});
+        pos[{min(a,b),max(a,b)}]++;
+        edge[a].add(b);
+        edge[b].add(a);
         degree[a]++;
         degree[b]++;
     }
 
-    for(int i=0;i<n;i++)
-        sort(edge[i].begin(),edge[i].end());
-
     bool alleven = true;
-    
     for(int i=0;i<n;i++){
         if(degree[i] % 2 != 0){
             alleven = false;
             break;
         }
     }
-
     int c = 0;
     bool visited[n] = {false};
     for(int i=0;i<n;i++){
@@ -96,11 +120,12 @@ int main(int size,char** args)
             c++;
         }
     }
-    
+ 
     if(alleven == false or degree[0] == 0 or c > 1){
         cout << "IMPOSSIBLE" << '\n';
         return 0;
     }
+    
 
     stack<int> abc;
     dfs(0,-1,edge,abc);
@@ -110,5 +135,6 @@ int main(int size,char** args)
         abc.pop();
     }
     cout << '\n';
+    // t.exec_time();
     return 0;
 }
