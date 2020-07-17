@@ -63,7 +63,6 @@ void solve()
                 break;
         }
         reverse(cycle.begin(), cycle.end());
-
         cout << "YES \n";
         for (int v : cycle)
             cout << v+1 << ' ';
