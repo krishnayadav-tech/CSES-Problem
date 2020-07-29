@@ -34,11 +34,9 @@ struct Node{
         start = s;
         end = e;
     }
-    Node()
-    {
-
-    }
+    Node(){}
 };
+
 int main()
 {
     #ifdef OFFLINE 
