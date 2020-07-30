@@ -16,3 +16,4 @@
 09. Stick Lengths - [Question](https://cses.fi/problemset/task/1074) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/sas/cses-09.cpp)
 10. Playlist - [Question](https://cses.fi/problemset/task/1141) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/sas/cses-10.cpp)
 11. Towers - [Question](https://cses.fi/problemset/task/1073) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/sas/cses-11.cpp)
+12. Traffic Lights - [Question](https://cses.fi/problemset/task/1163) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/sas/cses-12.cpp)
