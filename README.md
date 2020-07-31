@@ -18,3 +18,4 @@
 11. Towers - [Question](https://cses.fi/problemset/task/1073) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/sas/cses-11.cpp)
 12. Traffic Lights - [Question](https://cses.fi/problemset/task/1163) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/sas/cses-12.cpp)
 13. Room Allocation - [Question](https://cses.fi/problemset/task/1164) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/sas/cses-13.cpp)
+14. Factory Machines - [Question](https://cses.fi/problemset/task/1620) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/sas/cses-14.cpp)
