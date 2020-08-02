@@ -24,3 +24,5 @@
 17. Sum of Three Values - [Question](https://cses.fi/problemset/task/1641) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/sas/cses-17.cpp)
 18. Sum of Four Values - [Question](https://cses.fi/problemset/task/1642) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/sas/cses-18.cpp)
 19. Nearest Smaller Values - [Question](https://cses.fi/problemset/task/1645) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/sas/cses-19.cpp)
+20. SubArray Sum I - [Question](https://cses.fi/problemset/task/1660) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/sas/cses-20.cpp)
+21. SubArray Sum II - [Question](https://cses.fi/problemset/task/1661) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/sas/cses-21.cpp)
