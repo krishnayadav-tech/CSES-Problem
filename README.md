@@ -23,3 +23,4 @@
 16. Reading Books - [Question](https://cses.fi/problemset/task/1631) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/sas/cses-16.cpp)
 17. Sum of Three Values - [Question](https://cses.fi/problemset/task/1641) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/sas/cses-17.cpp)
 18. Sum of Four Values - [Question](https://cses.fi/problemset/task/1642) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/sas/cses-18.cpp)
+19. Nearest Smaller Values - [Question](https://cses.fi/problemset/task/1645) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/sas/cses-19.cpp)
