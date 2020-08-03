@@ -1,5 +1,6 @@
 # CSES-Problem
 ### Graph Algorithm
+1. Shortest Routes I - [Question](https://cses.fi/problemset/task/1671) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/sas/cses-08.cpp)
 ### Tree Algorithm
 ### Dynamic Programming
 ### Range Query
