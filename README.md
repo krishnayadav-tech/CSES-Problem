@@ -26,3 +26,4 @@
 19. Nearest Smaller Values - [Question](https://cses.fi/problemset/task/1645) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/sas/cses-19.cpp)
 20. SubArray Sum I - [Question](https://cses.fi/problemset/task/1660) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/sas/cses-20.cpp)
 21. SubArray Sum II - [Question](https://cses.fi/problemset/task/1661) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/sas/cses-21.cpp)
+22. Subarray Divisibility - [Question](https://cses.fi/problemset/task/1662) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/sas/cses-22.cpp)
