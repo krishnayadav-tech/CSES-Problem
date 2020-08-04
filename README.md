@@ -28,3 +28,6 @@
 20. SubArray Sum I - [Question](https://cses.fi/problemset/task/1660) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/sas/cses-20.cpp)
 21. SubArray Sum II - [Question](https://cses.fi/problemset/task/1661) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/sas/cses-21.cpp)
 22. Subarray Divisibility - [Question](https://cses.fi/problemset/task/1662) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/sas/cses-22.cpp)
+24. Sliding Median - [Question](https://cses.fi/problemset/task/1076) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/sas/cses-24.cpp)
+25. Sliding Cost - [Question](https://cses.fi/problemset/task/1077) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/sas/cses-25.cpp)
+27. Maximum Subarray Sum II - [Question](https://cses.fi/problemset/task/1644) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/sas/cses-27.cpp)
