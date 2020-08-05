@@ -31,4 +31,5 @@
 23. Array Division - [Question](https://cses.fi/problemset/task/1085) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/sas/cses-23.cpp)
 24. Sliding Median - [Question](https://cses.fi/problemset/task/1076) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/sas/cses-24.cpp)
 25. Sliding Cost - [Question](https://cses.fi/problemset/task/1077) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/sas/cses-25.cpp)
+26. Movie Festival II - [Question](https://cses.fi/problemset/task/1632) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/sas/cses-26.cpp)
 27. Maximum Subarray Sum II - [Question](https://cses.fi/problemset/task/1644) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/sas/cses-27.cpp)
