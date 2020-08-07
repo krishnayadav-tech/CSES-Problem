@@ -1,206 +1,195 @@
-//TLE
-#include <iostream>
-#include <climits>
-#include <cmath>
-#include <string>
-#include <vector>
-#include <list>
-#include <utility>
-#include <algorithm>
-#include <stack>
-#include <queue>
-#include <set>
-#include <unordered_set>
-#include <map>
-#include <unordered_map>
-#include <sstream>
-#include <unistd.h>
-using namespace std;
+#include <bits/stdc++.h>
 #define max(a,b) (a>b?a:b)
-#define min(a,b) (a<b?a:b)
-#define isint(a) ((int)a==a)
-#define mod 1000000007
-#define INF 1e9
-typedef long long int ll;
-typedef pair<int,int> pi;
-int sts = 0;
-int n;
-int tree[4001][4001];
-int tree2[4001][4001];
-bool isoverlap(int a,int b,int x,int y){
-    if(x >= a and x <= b){
-        return true;
+using namespace std;
+
+class Timer{
+public:
+    Timer(){
+        start_t = chrono::high_resolution_clock::now();
     }
-    if(a >= x and a <= y ){
-        return true;
-    }
-    return false;
-}
  
-int construct(int i,int ss,int se,int arr[],int tree[]){
-    sts++;
-    if(ss==se){
+    ~Timer(){
+        end_t = chrono::high_resolution_clock::now();
+    }
+    void exec_time()
+    {
+        end_t = chrono::high_resolution_clock::now();
+        chrono::duration<double> diff = end_t - start_t;
+        cout << fixed <<  diff.count() << endl;
+    }
+private:
+    chrono::high_resolution_clock::time_point start_t;
+    chrono::high_resolution_clock::time_point end_t;
+};
+
+
+vector<int> tree[4001];
+vector<int> tree2[4001];
+int treesize = 0;
+void sizecalc(int i,int ss,int se){
+    treesize = max(treesize,i);
+    if(ss == se)
+        return;
+    int mid = ss + (se-ss)/2;
+    sizecalc(i*2+1,ss,mid);
+    sizecalc(i*2+2,mid+1,se);
+}
+void construct(int i,int ss,int se,vector<int>& arr,vector<int>& tree){
+    if(ss == se){
         tree[i] = arr[ss];
-        return tree[i];
+        return;
     }
     int mid = ss + (se-ss)/2;
-    int ans1 = construct(i*2,ss,mid,arr,tree);
-    int ans2 = construct((i*2)+1,mid+1,se,arr,tree);
-    tree[i] = ans1 + ans2;
+    construct(i*2+1,ss,mid,arr,tree);
+    construct(i*2+2,mid+1,se,arr,tree);
+    tree[i] = tree[i*2+1] + tree[i*2+2];
+}
+unordered_set<int> indexes;
+int indexupdate(int i,int ss,int se,int index,vector<int>& tree)
+{
+    indexes.insert(i);
+    if(ss == se){
+        tree[i] = (tree[i] + 1) % 2;
+        return tree[i];
+    }
+    int left,right;
+    int mid = ss + (se-ss)/2;
+    left = tree[i*2+1];
+    right = tree[i*2+2];
+    if(index <= mid){
+        left = indexupdate(i*2+1,ss,mid,index,tree);
+    }else{
+        right = indexupdate(i*2+2,mid+1,se,index,tree);
+    }
+    tree[i] = left + right;
     return tree[i];
 }
- 
-void construct2(int i,int ss,int se,int tree[][4001],int tree2[][4001]){
-    if(ss==se){
-        for(int j=1;j<=sts;j++){
+
+void construct2(int i,int ss,int se){
+    if(ss == se){
+        for(int j=0;j<treesize;j++){
             tree2[i][j] = tree[ss][j];
         }
-        return;
+        return; 
     }
     int mid = ss + (se-ss)/2;
-    construct2(i*2,ss,mid,tree,tree2);
-    construct2((i*2)+1,mid+1,se,tree,tree2);
-    for(int j=1;j<=2*n;j++){
-        tree2[i][j] = tree2[i*2][j] + tree2[i*2+1][j];
+    construct2(i*2+1,ss,mid);
+    construct2(i*2+2,mid+1,se);
+    for(int j=0;j<tree2[i*2+1].size();j++){
+        tree2[i][j] = (tree2[i*2+1][j] + tree2[i*2+2][j]);
     }
 }
- 
-set<int> updateindex;
-int update(int i,int ss,int se,int index,int value,int arr[],int tree[]){
-    
-    if(ss==se && ss==index){
-        updateindex.insert(i);
-        tree[i] = value;
-        arr[index] = value;
-        return tree[i];
-    }
- 
-    if(index < ss or index > se){
-        return tree[i];
-    }
+
+
+void indexupdate2(int i,int ss,int se,int index){
     if(ss == se){
-        return tree[i];
-    }
- 
-    int mid = ss + (se-ss)/2;
-    int ans1 = update(i*2,ss,mid,index,value,arr,tree);
-    int ans2 = update((i*2)+1,mid+1,se,index,value,arr,tree);
-    tree[i] = ans1 + ans2;
-    updateindex.insert(i);
-    return tree[i];
-}
- 
- 
-void update2(int i,int ss,int se,int index,int tree[][4001],int tree2[][4001]){
-    if(ss==se && ss==index){
-        for(int x : updateindex){
+        for(int x : indexes){
             tree2[i][x] = tree[ss][x];
         }
-        return;
+        return; 
     }
- 
-    if(index < ss or index > se){
-        return;
-    }
-    if(ss == se){
-        return;
-    }
- 
     int mid = ss + (se-ss)/2;
-    update2(i*2,ss,mid,index,tree,tree2);
-    update2(i*2+1,mid+1,se,index,tree,tree2);
-    for(int j : updateindex){
-        tree2[i][j] = tree2[i*2][j] + tree2[i*2+1][j];
+    if(index <= mid){
+        indexupdate2(i*2+1,ss,mid,index);
+    }else{
+        indexupdate2(i*2+2,mid+1,se,index);
+    }
+    for(int x : indexes){
+        tree2[i][x] = tree2[i*2+1][x] + tree2[i*2+2][x];
     }
 }
- 
-int getans(int i,int ss,int se,int rs,int re,int tree[]){
-    if(ss >= rs && se <= re){
+
+
+int getans(int i,int ss,int se,int rs,int re,vector<int>& tree){
+    if(ss >=rs && se <= re){
+        indexes.insert(i);
         return tree[i];
     }
- 
-    int mid = ss + (se-ss)/2;
-    int ans1,ans2;
-    ans1 = ans2 = 0;
-    if(isoverlap(ss,mid,rs,re)){
-        ans1 = getans(i*2,ss,mid,rs,re,tree);
+    if(rs > se or re < ss){
+        return 0;
     }
-    if(isoverlap(mid+1,se,rs,re)){
-        ans2 = getans((i*2)+1,mid+1,se,rs,re,tree);
-    }
-    return (ans1 + ans2);
+    int mid = ss + (se - ss)/2;
+    return getans(i*2+1,ss,mid,rs,re,tree) + getans(i*2+2,mid+1,se,rs,re,tree);
 }
- 
-int getans2(int i,int ss,int se,int a,int b,int c,int d,int tree[][4001],int tree2[][4001]){
-    if(ss >= a && se <= c){
-        int ans = getans(1,1,n,b,d,tree2[i]);
-        return ans;
+
+int getans2(int i,int ss,int se,int rs,int re){
+    
+    if(rs > se or re < ss){
+        return 0;
     }
- 
-    int mid = ss + (se-ss)/2;
-    int ans1,ans2;
-    ans1 = ans2 = 0;
-    if(isoverlap(ss,mid,a,c)){
-        ans1 = getans2(i*2,ss,mid,a,b,c,d,tree,tree2);
-    }
-    if(isoverlap(mid+1,se,a,c)){
-        ans2 = getans2((i*2)+1,mid+1,se,a,b,c,d,tree,tree2);
-    }
-    return (ans1 + ans2);
-}
- 
-int main(int size,char** args)
-{
-    // basic input output preset
-    if(size >= 2){
-        string args2 = args[1];
-        if(args2 == "-onlinejudge"){
-            freopen("input.txt","r",stdin);
-            // freopen("output.txt","w",stdout);
+    if(ss >=rs && se <= re){
+        int sum = 0;
+        for(int x : indexes){
+            sum = sum + tree2[i][x];
         }
+        return sum;
     }
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(NULL);   
+    int mid = ss + (se - ss)/2;
+    return getans2(i*2+1,ss,mid,rs,re) + getans2(i*2+2,mid+1,se,rs,re);
+}
+
+int main()
+{
+    #ifdef OFFLINE
+        Timer t;
+        freopen("input.txt","r",stdin);
+        freopen("output.txt","w",stdout);
+    #endif
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int n;
     int q;
     cin >> n >> q;
-    int arr[n+1][n+1];
-    for(int i=1;i<=n;i++){
-        for(int j=1;j<=n;j++)
-        {
-            char c;
-            cin >> c;
-            if(c == '*')
-                arr[i][j] = 1;
-            else
+    sizecalc(0,0,n-1);
+    treesize = treesize + 1;
+    vector<int> arr[n];
+    for(int i=0;i<n;i++){
+        arr[i].resize(n);
+        tree[i].resize(treesize);
+    }
+    for(int i=0;i<treesize;i++){
+        tree2[i].resize(treesize);
+    }
+    //input
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            char abc;
+            cin >> abc;
+            if(abc == '.'){
                 arr[i][j] = 0;
+            }else{
+                arr[i][j] = 1;
+            }
         }
     }
- 
-    for(int i=1;i<=n;i++){
-        construct(1,1,n,arr[i],tree[i]);
+    
+    //construction
+    for(int i=0;i<n;i++){
+        construct(0,0,n-1,arr[i],tree[i]);
     }
-    construct2(1,1,n,tree,tree2);
+    construct2(0,0,n-1);
+    //query ans
+    int type;
     while(q--){
-        int type;
+        indexes.clear();
         cin >> type;
         if(type == 1){
             int a,b;
             cin >> a >> b;
-            int value;
-            if(arr[a][b] == 0){
-                value = 1;
-            }else{
-                value = 0;
-            }
-            updateindex.clear();
-            update(1,1,n,b,value,arr[a],tree[a]);
-            update2(1,1,n,a,tree,tree2);
+            a--;b--;
+            indexupdate(0,0,n-1,b,tree[a]);
+            indexupdate2(0,0,n-1,a);
             continue;
         }
- 
         int a,b,c,d;
         cin >> a >> b >> c >> d;
-        cout << getans2(1,1,n,a,b,c,d,tree,tree2) << '\n';
+        a--;b--;c--;d--;
+        getans(0,0,n-1,b,d,tree[a]);
+        cout << getans2(0,0,n-1,a,c) << '\n';
     }
+    #ifdef OFFLINE 
+        t.exec_time();
+    #endif   
+    
     return 0;
 }
