@@ -1,10 +1,4 @@
 # CSES-Problem
-### Graph Algorithm
-1. Shortest Routes I - [Question](https://cses.fi/problemset/task/1671) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/graph/cses-08.cpp)
-### Tree Algorithm
-### Dynamic Programming
-### Range Query
-### String Algorithm
 ### Searching and Sorting
 01. Distinct Numbers - [Question](https://cses.fi/problemset/task/1621) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/sas/cses-01.cpp)
 02. Apartments - [Question](https://cses.fi/problemset/task/1084) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/sas/cses-02.cpp)
@@ -33,3 +27,23 @@
 25. Sliding Cost - [Question](https://cses.fi/problemset/task/1077) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/sas/cses-25.cpp)
 26. Movie Festival II - [Question](https://cses.fi/problemset/task/1632) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/sas/cses-26.cpp)
 27. Maximum Subarray Sum II - [Question](https://cses.fi/problemset/task/1644) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/sas/cses-27.cpp)
+### Dynamic Programming
+01. Dice Combination - [Question](https://cses.fi/problemset/task/1633) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Dynamic%20Programming/cses-01.cpp)
+02. Minimizing Coins - [Question](https://cses.fi/problemset/task/1634) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Dynamic%20Programming/cses-02.cpp)
+03. Coin Combination I - [Question](https://cses.fi/problemset/task/1635) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Dynamic%20Programming/cses-03.cpp)
+04. Coin Combination II - [Question](https://cses.fi/problemset/task/1636) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Dynamic%20Programming/cses-04.cpp)
+05. Removing Digits - [Question](https://cses.fi/problemset/task/1637) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Dynamic%20Programming/cses-05.cpp)
+06. Grid Paths - [Question](https://cses.fi/problemset/task/1638) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Dynamic%20Programming/cses-06.cpp)
+07. Book Shop - [Question](https://cses.fi/problemset/task/1158) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Dynamic%20Programming/cses-07.cpp)
+08. Array Description - [Question](https://cses.fi/problemset/task/1746) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Dynamic%20Programming/cses-08.cpp)
+09. Edit Distance - [Question](https://cses.fi/problemset/task/1639) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Dynamic%20Programming/cses-09.cpp)
+10. Rectangle Cutting - [Question](https://cses.fi/problemset/task/1744) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Dynamic%20Programming/cses-10.cpp)
+11. Money Sums - [Question](https://cses.fi/problemset/task/1745) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Dynamic%20Programming/cses-11.cpp)
+12. Removal Games - [Question](https://cses.fi/problemset/task/1097) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Dynamic%20Programming/cses-12.cpp)
+13. Two Sets II - [Question](https://cses.fi/problemset/task/1093) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Dynamic%20Programming/cses-13.cpp)
+14. Increasing Sequence - [Question](https://cses.fi/problemset/task/1145) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Dynamic%20Programming/cses-14.cpp)
+15. Projects - [Question](https://cses.fi/problemset/task/1140) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Dynamic%20Programming/cses-15.cpp)
+### Graph Algorithm
+### Tree Algorithm
+### Range Query
+### String Algorithm
