@@ -45,5 +45,17 @@
 15. Projects - [Question](https://cses.fi/problemset/task/1140) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Dynamic%20Programming/cses-15.cpp)
 ### Graph Algorithm
 ### Tree Algorithm
+01. Subordinates - [Question](https://cses.fi/problemset/task/1674) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Tree%20Algorithm/cses-01.cpp)
+02. Tree Matching - [Question](https://cses.fi/problemset/task/1130) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Tree%20Algorithm/cses-02.cpp)
+03. Tree Diameter - [Question](https://cses.fi/problemset/task/1131) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Tree%20Algorithm/cses-03.cpp)
+04. Tree Distance I - [Question](https://cses.fi/problemset/task/1132) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Tree%20Algorithm/cses-04.cpp)
+05. Tree Distance II - [Question](https://cses.fi/problemset/task/1133) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Tree%20Algorithm/cses-05.cpp)
+06. Company Queries I - [Question](https://cses.fi/problemset/task/1687) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Tree%20Algorithm/cses-06.cpp)
+07. Company Queries II - [Question](https://cses.fi/problemset/task/1688) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Tree%20Algorithm/cses-07.cpp)
+08. Distance Queries - [Question](https://cses.fi/problemset/task/1135) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Tree%20Algorithm/cses-08.cpp)
+09. Counting Paths - [Question](https://cses.fi/problemset/task/1136) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Tree%20Algorithm/cses-09.cpp)
+10. Subtree Queries - [Question](https://cses.fi/problemset/task/1137) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Tree%20Algorithm/cses-10.cpp)
+11. Path Queries - [Question](https://cses.fi/problemset/task/1138) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Tree%20Algorithm/cses-11.cpp)
+12. Distinct Colors - [Question](https://cses.fi/problemset/task/1139) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Tree%20Algorithm/cses-12.cpp)
 ### Range Query
 ### String Algorithm
