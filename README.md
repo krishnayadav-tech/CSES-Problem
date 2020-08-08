@@ -58,4 +58,26 @@
 11. Path Queries - [Question](https://cses.fi/problemset/task/1138) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Tree%20Algorithm/cses-11.cpp)
 12. Distinct Colors - [Question](https://cses.fi/problemset/task/1139) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Tree%20Algorithm/cses-12.cpp)
 ### Range Query
+
+
+
+
+01. Range Sum Queries I - [Question](https://cses.fi/problemset/task/1646) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Range%20Query/cses-01.cpp)
+02. Range Minimum Queries I - [Question](https://cses.fi/problemset/task/1647) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Range%20Query/cses-02.cpp)
+03. Range Sum Queries II - [Question](https://cses.fi/problemset/task/1648) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Range%20Query/cses-03.cpp)
+04. Range Minimum Queries II - [Question](https://cses.fi/problemset/task/1649) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Range%20Query/cses-04.cpp)
+05. Range XOR Queries - [Question](https://cses.fi/problemset/task/1650) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Range%20Query/cses-05.cpp)
+06. Range Update Queries - [Question](https://cses.fi/problemset/task/1651) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Range%20Query/cses-06.cpp)
+07. Forest Queries - [Question](https://cses.fi/problemset/task/1652) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Range%20Query/cses-07.cpp)
+08. Hotel Queries - [Question](https://cses.fi/problemset/task/1143) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Range%20Query/cses-08.cpp)
+09. List Removals - [Question](https://cses.fi/problemset/task/1749) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Range%20Query/cses-09.cpp)
+10. Salary Queries - [Question](https://cses.fi/problemset/task/1144) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Range%20Query/cses-10.cpp)
+11. Subarray Sum Queries - [Question](https://cses.fi/problemset/task/1190) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Range%20Query/cses-11.cpp)
+12. Distinct Values Queries - [Question](https://cses.fi/problemset/task/1734) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Range%20Query/cses-12.cpp)
+13. Forest Queries II - [Question](https://cses.fi/problemset/task/1739) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Range%20Query/cses-13.cpp)
+14. Range Updates and Sums - [Question](https://cses.fi/problemset/task/1735) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Range%20Query/cses-14.cpp)
+15. Polynomial Queries - [Question](https://cses.fi/problemset/task/1736) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Range%20Query/cses-15.cpp)
+
+
+
 ### String Algorithm
