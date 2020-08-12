@@ -1,4 +1,24 @@
 # CSES-Problem
+### Introductory Problems
+01. Weird Algorithm - [Question](https://cses.fi/problemset/task/1068) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Introductory%20Problems/cses-01.cpp)
+02. Missing Number - [Question](https://cses.fi/problemset/task/1083) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Introductory%20Problems/cses-02.cpp)
+03. Repetitions - [Question](https://cses.fi/problemset/task/1069) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Introductory%20Problems/cses-03.cpp)
+04. Increasing Array - [Question](https://cses.fi/problemset/task/1094) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Introductory%20Problems/cses-04.cpp)
+05. Permutations - [Question](https://cses.fi/problemset/task/1070) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Introductory%20Problems/cses-05.cpp)
+06. Number Spiral - [Question](https://cses.fi/problemset/task/1071) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Introductory%20Problems/cses-06.cpp)
+07. Two Knights - [Question](https://cses.fi/problemset/task/1072) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Introductory%20Problems/cses-07.cpp)
+08. Two Sets - [Question](https://cses.fi/problemset/task/1092) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Introductory%20Problems/cses-08.cpp)
+09. Bit Strings - [Question](https://cses.fi/problemset/task/1617) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Introductory%20Problems/cses-09.cpp)
+10. Trailing Zeros - [Question](https://cses.fi/problemset/task/1618) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Introductory%20Problems/cses-10.cpp)
+11. Coin Piles - [Question](https://cses.fi/problemset/task/1754) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Introductory%20Problems/cses-11.cpp)
+12. Palindrome Reorder - [Question](https://cses.fi/problemset/task/1755) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Introductory%20Problems/cses-12.cpp)
+13. Creating Strings I - [Question](https://cses.fi/problemset/task/1622) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Introductory%20Problems/cses-13.cpp)
+14. Apple Division - [Question](https://cses.fi/problemset/task/1623) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Introductory%20Problems/cses-14.cpp)
+15. Chessboard and Queens - [Question](https://cses.fi/problemset/task/1624) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Introductory%20Problems/cses-15.cpp)
+16. Grid Paths - [Question](https://cses.fi/problemset/task/1625) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/Introductory%20Problems/cses-16.cpp)
+
+
+
 ### Searching and Sorting
 01. Distinct Numbers - [Question](https://cses.fi/problemset/task/1621) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/sas/cses-01.cpp)
 02. Apartments - [Question](https://cses.fi/problemset/task/1084) - [Solution](https://github.com/krishnayadav9dev/CSES-Problem/blob/master/sas/cses-02.cpp)
