@@ -22,25 +22,20 @@ using namespace std;
 #define INF 1e9
 typedef long long int ll;
 typedef pair<int,int> pi;
-
-ll totaldivisor(ll n){
-    long long int sum = 0;
-    for(int i=1;i<sqrt(n);i++){
-        if(n % i == 0){
-            sum = sum + i;
-            sum = sum % mod;
-            sum = sum + n/i;
-            sum = sum % mod;
-        }
-            
+ll power(ll a,ll b){
+    if(b == 0)
+        return 1;
+    if(a == 0)
+        return 0;
+    
+    ll temp = power(a,b/2);
+    ll ans = ((temp % mod) * (temp % mod)) % mod;
+    if(b%2 == 0){
+        return ans;
+    }else{
+        return (ans * (a%mod)) % mod;
     }
-    int sqrt_n = sqrt(n);
-    if(sqrt_n * sqrt_n == n)
-        sum = sum + sqrt_n;
-    sum = sum % mod;
-    return sum;
 }
-
 int main(int size,char** args)
 {
     // basic input output preset
@@ -55,6 +50,28 @@ int main(int size,char** args)
     std::cin.tie(NULL);   
     ll n;
     cin >> n;
-    cout << totaldivisor(n) << '\n';
+    ll sum = 0;
+    ll sqrts = sqrt(n);
+    ll mod_inv = power(2,mod-2);
+    for(ll i=1;i<=sqrts;i++){
+        sum = (sum) + (((n/i)*i) % mod);
+        sum = sum % mod;
+    }
+    ll last = sqrts;
+    for(ll i=sqrts;i>=1;i--){
+        ll x = ceil(n/i);
+        ll ans = ((x%mod) * ((x+1) % mod)) % mod;
+        ans = (ans * mod_inv) % mod;
+        ll ans2 = ((last%mod) * ((last+1) % mod)) % mod;
+        ans2 = (ans2 * mod_inv) % mod;
+        ans = (ans - ans2);
+        if(ans < 0){
+            ans = ans + mod;
+        }
+        sum = sum + ((ans * i) % mod);
+        sum = sum % mod;
+        last = x;
+    }
+    cout << sum << '\n';
     return 0;
 }
