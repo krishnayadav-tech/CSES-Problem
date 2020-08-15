@@ -25,14 +25,6 @@ typedef pair<int,int> pi;
  
 int main(int size,char** args)
 {
-    // basic input output preset
-    if(size >= 2){
-        string args2 = args[1];
-        if(args2 == "-onlinejudge"){
-            freopen("input.txt","r",stdin);
-            // freopen("output.txt","w",stdout);
-        }
-    }
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(NULL);   
     string b;
@@ -40,7 +32,7 @@ int main(int size,char** args)
     int lps[b.size()];
     fill(lps,lps+b.size(),-1);
     int j = -1;
-    for(int i=1;i<b.size();i++){
+    for(unsigned int i=1;i<b.size();i++){
         if(b[j+1] == b[i])
         {
             j++;
@@ -52,8 +44,7 @@ int main(int size,char** args)
         }
     }
     
-    
-    set<int> ans;
+	set<int> ans;
     int i = b.size()-1;
     while(lps[i] >= 0){
         if(lps[i] >= 0)
@@ -62,10 +53,39 @@ int main(int size,char** args)
             break;
         i = lps[i];
     }
+	int start = 1;
+    for(unsigned int i=1;i<b.size()-1;i++){
+		if(b[i] == b[i-1]){
+			start++;
+		}else{
+			break;
+		}
+	}
+	
+	int end = 1;
+	for(int i=b.size()-2;i>=1;i--){
+		if(b[i] == b[i+1]){
+			end++;
+		}else{
+			break;
+		}
+	}
 
-    for(int x : ans){
-        cout << x << ' ';
-    }
-    cout << '\n';
+    if(b[0] == b[b.size()-1])
+    {
+		long unsigned int mine = min(start,end);
+		if(mine > ans.size()){
+			for(long unsigned int i=1;i<=mine;i++){
+				cout << i << ' ';
+			}
+			cout << '\n';
+			return 0;
+		}
+	}
+	
+	for(int x : ans){
+		cout << x << ' ';
+	}
+	cout << '\n';
     return 0;
 }
