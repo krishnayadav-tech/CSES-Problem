@@ -115,15 +115,18 @@ int main()
             int x_ = arr[i] + arr[j];
             int diff = x - x_;
             if(diff == arr[i]){
-                if(ans2[diff] > 1){
+                auto it = ans2.find(diff);
+                if(it != ans2.end() && it->second > 1){
                     printed = true;
                 }
             }else if(diff == arr[j]){
-                if(ans2[diff] > 1){
+                auto it = ans2.find(diff);
+                if(it != ans2.end() && it->second > 1){
                     printed = true;
                 }
             }else{
-                if(ans2[diff] > 0){
+                auto it = ans2.find(diff);
+                if(it != ans2.end() && it->second > 0){
                     printed = true;
                 }
             }
